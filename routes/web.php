@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', 'PagesController@root')->name('root');
+Route::get('/', 'PagesController@root')->name('root')->middleware('verified');
 Route::any('/wechat', 'Wechat\IndexController@index');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');

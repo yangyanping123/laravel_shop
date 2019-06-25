@@ -177,7 +177,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Overtrue\LaravelWeChat\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Yajra\Oci8\Oci8ServiceProvider::class,
+       // Yajra\Oci8\Oci8ServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
