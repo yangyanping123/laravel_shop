@@ -13,3 +13,7 @@
 
 Route::get('/', 'PagesController@root')->name('root');
 Route::any('/wechat', 'Wechat\IndexController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
