@@ -6,6 +6,9 @@ yarn 安装方法
 https://cloud.tencent.com/developer/article/1360210
 
 
+composer国内镜像
+composer config -g repos.packagist composer https://packagist.mirrors.sjtug.sjtu.edu.cn
+composer config -g repos.packagist composer https://php.cnpkg.org
 
 
 
