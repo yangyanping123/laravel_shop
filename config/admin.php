@@ -41,7 +41,7 @@ return [
     | Laravel-admin bootstrap setting
     |--------------------------------------------------------------------------
     |
-    | This value is the path of laravel-admin bootstrap file.
+    | laravel admin启动文件路径
     |
     */
     'bootstrap' => app_path('Admin/bootstrap.php'),
@@ -56,12 +56,15 @@ return [
     | access through the root path, just set the prefix to empty string.
     |
     */
+    //路由配置
     'route' => [
-
+        //路由前缀
         'prefix' => env('ADMIN_ROUTE_PREFIX', 'admin'),
 
+        //控制器命名空间前缀
         'namespace' => 'App\\Admin\\Controllers',
 
+        //默认中间件列表
         'middleware' => ['web', 'admin'],
     ],
 
@@ -85,11 +88,11 @@ return [
     | Html title for all pages.
     |
     */
-    'title' => 'Admin',
+    'title' => 'laravel shop后台管理系统',
 
     /*
     |--------------------------------------------------------------------------
-    | Access via `https`
+    | 是否使用https
     |--------------------------------------------------------------------------
     |
     | If your page is going to be accessed via https, set it to `true`.
@@ -99,7 +102,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Laravel-admin auth setting
+    | Laravel-admin 用户认证设置
     |--------------------------------------------------------------------------
     |
     | Authentication settings for all admin pages. Include an authentication
@@ -126,13 +129,13 @@ return [
             ],
         ],
 
-        // Add "remember me" to login form
+        // 是否展示保持登录选项
         'remember' => true,
 
-        // Redirect to the specified URI when user is not authorized.
+        // 登录页面url
         'redirect_to' => 'auth/login',
 
-        // The URIs that should be excluded from authorization.
+        // 无需用户认证即可访问的地址
         'excepts' => [
             'auth/login',
             'auth/logout',
@@ -237,7 +240,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Admin map field provider
+    | 地图组件提供商
     |--------------------------------------------------------------------------
     |
     | Supported: "tencent", "google", "yandex".
@@ -247,7 +250,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Skin
+    | 页面风格
     |--------------------------------------------------------------------------
     |
     | This value is the skin of admin pages.
@@ -277,7 +280,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Login page background image
+    | 登录页背景图
     |--------------------------------------------------------------------------
     |
     | This value is used to set the background image of login page.
@@ -287,7 +290,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Show version at footer
+    | 显示版本
     |--------------------------------------------------------------------------
     |
     | Whether to display the version number of laravel-admin at the footer of
@@ -298,7 +301,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Show environment at footer
+    | 显示环境
     |--------------------------------------------------------------------------
     |
     | Whether to display the environment at the footer of each page
@@ -308,7 +311,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Menu bind to permission
+    | 菜单绑定权限
     |--------------------------------------------------------------------------
     |
     | whether enable menu bind to a permission
@@ -317,7 +320,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable default breadcrumb
+    | E默认启用面包屑
     |--------------------------------------------------------------------------
     |
     | Whether enable default breadcrumb for every page content.
@@ -333,7 +336,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Extension Directory
+    | 扩展所在目录
     |--------------------------------------------------------------------------
     |
     | When you use command `php artisan admin:extend` to generate extensions,
@@ -343,7 +346,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Settings for extensions.
+    | 扩展设置
     |--------------------------------------------------------------------------
     |
     | You can find all available extensions here
