@@ -14,6 +14,7 @@
 Route::get('/', 'PagesController@root')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+
 Route::any('/wechat', 'Wechat\IndexController@index');
 Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified']], function() {
@@ -22,5 +23,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('user_addresses', 'UserAddressesController@store')->name('user_addresses.store');
     Route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
     Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
+    Route::post('products/{product}/favorite', 'ProductsController@favor')->name('products.favor');
+    Route::delete('products/{product}/favorite', 'ProductsController@disfavor')->name('products.disfavor');
 });
 

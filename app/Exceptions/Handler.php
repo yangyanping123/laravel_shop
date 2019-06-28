@@ -6,7 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 class Handler extends ExceptionHandler
 {
     protected $dontReport = [
-        InvalidRequestException::class,
+        InvalidRequestException::class, //内置了屏蔽指定异常写日志的解决方案
     ];
 
     /**
