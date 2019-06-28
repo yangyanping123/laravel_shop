@@ -12,5 +12,6 @@ composer config -g repos.packagist composer https://php.cnpkg.org
 
 
 
-1.关于VR在安卓和ios中怎么嵌入，给安卓和ios开发人员的也是一个html还是是什么
- 怎么保证嵌入文件的兼容性以及适配性，以及实现方式是什么样的
+Laravel5.6 整合 RabbitMQ 消息队列
+https://learnku.com/articles/21522
+
