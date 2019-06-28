@@ -6,8 +6,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 class Handler extends ExceptionHandler
 {
     protected $dontReport = [
-        //
+        InvalidRequestException::class,
     ];
+
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
