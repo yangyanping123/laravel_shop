@@ -13,6 +13,7 @@
 
 Route::get('/', 'PagesController@root')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 Route::any('/wechat', 'Wechat\IndexController@index');
 Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified']], function() {
