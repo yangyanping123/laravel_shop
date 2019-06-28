@@ -25,4 +25,3 @@ $factory->define(UserAddress::class, function (Faker $faker) {
         'contact_phone' => $faker->phoneNumber,
     ];
 });
-factory(App\Http\Models\UserAddress::class, 3)->create(['user_id' => 1])
