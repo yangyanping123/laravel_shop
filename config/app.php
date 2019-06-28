@@ -179,7 +179,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
        // Yajra\Oci8\Oci8ServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
+        //VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
     ],
 
     /*

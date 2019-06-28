@@ -29,7 +29,7 @@ class ProductsController extends AdminController
         $grid->column('id', __('Id'))->sortable();
         $grid->column('title', __('商品名称'));
         //$grid->column('description', __('Description'));
-        $grid->column('image', __('Image'));
+       // $grid->column('image', __('Image'));
         $grid->on_sale('已上架')->display(function ($value) {
             return $value ? '是' : '否';
         });
@@ -90,7 +90,9 @@ class ProductsController extends AdminController
         $form->image('image', '封面图片')->rules('required|image');
 
         // 创建一个富文本编辑器
-        $form->editor('description', '商品描述')->rules('required');
+       // $form->editor('description', '商品描述')->rules('required');
+
+        $form->editor('description')->rules('required');
 
         // 创建一组单选框
         $form->radio('on_sale', '上架')->options(['1' => '是', '0'=> '否'])->default('0');
