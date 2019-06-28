@@ -9,7 +9,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-     protected $table='users';
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -53,15 +53,24 @@ class User extends Authenticatable implements JWTSubject
         $this->attributes['password'] = bcrypt($value);
     }
 
+    //收货地址
     public function addresses()
     {
         return $this->hasMany(UserAddress::class);
     }
 
+    //收藏商品
     public function favoriteProducts()
     {
         return $this->belongsToMany(Product::class, 'user_favorite_products')
             ->withTimestamps()
             ->orderBy('user_favorite_products.created_at', 'desc');
+    }
+
+
+    //购物车
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
     }
 }
