@@ -1,0 +1,142 @@
+1. 创建
+
+    复制一个已创建的仓库：git clone ssh://user@domain.com/repo.git
+    创建一个新的本地仓库：git init
+
+2. 本地修改
+
+    显示工作路径下已修改的文件：git status
+    显示与上次提交版本文件的不同：git diff
+    把当前所有修改添加到下次提交中：git add
+    把对某个文件的修改添加到下次提交中：git add -p <file>
+    提交本地的所有修改(包括不在缓存区的)：git commit -a
+    提交之前已标记的修改：git commit
+    附加消息提交：git commit -m 'message here
+    修改上次提交(不要修改已发布的提交)：git commit --amend
+
+3. 提交历史
+
+    从最新提交开始，显示所有的提交记录（显示hash， 作者信息，提交的标题和时间）：git log
+    显示所有提交（仅显示提交的hash和message）：git log --online
+    显示某个用户的所有提交：git log --author='username'
+    显示某个文件的搜友修改git log -p <file>
+    谁，在什么时间，修改了文件的什么内容：git blame <file>
+
+4. 分支与标签
+
+    列出所有的分支：git branch
+    切换分支：git checkout <branch>
+    基于当前分支创建新分支：git branch <new-branch>
+    基于远程分支创建新的可追溯的分支：git branch --track <new-branch> <remote-branch>
+    删除本地分支：git branch -d <branch>
+    给当前版本打标签git tag <tag-name>
+
+5. 更新与发布
+
+    列出对当前远程端的操作：git remote -v
+    显示远程端的信息：git remote show <remote>
+    添加新的远程端：git remote add <remote> <url>
+    下载远程端版本，但不合并到HEAD中：git fetch <remote>
+    下载远程端版本，并自动与HEAD版本合并：git remote pull <remote> <url>
+    将远程端版本合并到本地版本中：git pull origin master
+    将本地版本发布到远程端：git push remote <remote> <branch>
+    删除远程端分支：$ git push <remote> :<branch> (since Git v1.5.0)/git push <remote> --delete <branch> (since Git v1.7.0)
+    发布标签git push --tags
+
+6. 合并与重置
+
+    将分支合并到当前HEAD中：git merge <branch>
+    将当前HEAD版本重置到分支中(不要重置已发布的提交)：git rebase <branch>
+    退出重置:git rebase --abort
+    解决冲突后继续重置：git rebase --continue
+    使用配置好的merge tool 解决冲突：git mergetool
+    在编辑器中手动解决冲突后，标记文件为已解决冲突：git add <resolved-file>/git rm <resolve-file>
+
+7. 撤销
+
+    放弃工作目录下的所有修改：git reset --hard HEAD
+    移除缓存区的所有文件（i.e. 撤销上次git add）:git reset HEAD
+    放弃某个文件的所有本地修改：git checkout HEAD <file>
+    重置一个提交（通过创建一个截然不同的新提交）git revert <commit>
+    将HEAD重置到上一次提交的版本，并放弃之后的所有修改：git reset --hard <commit>
+    将HEAD重置到上一次提交的版本，并将之后的修改标记为未添加到缓存区的修改：git reset <commit>
+    将HEAD重置到上一次提交的版本，并保留未提交的本地修改：git reset --keep <commit>
+
+8. 廖雪峰学习(按顺序记录)
+
+    配置git全局的name和e-mail：
+
+    git config --global user.name "Your Name"
+
+    git config --global user.email "email@example.com"
+
+
+初始化一个仓库：git init
+添加文件到git仓库
+
+git add <file>//添加文件到缓存区，可反复多次使用，添加多个文件
+git commit//提交缓存区的修改
+
+
+查看工作区的状态：git status
+查看文件修改内容：git diff <file>
+在版本历史间穿梭：git reset --hard <commit_id>/git reset --hard HEAD^/git reset --hard HEAD~100
+        查看提交历史：git log
+        查看命令历史：git relog
+        当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时：git checkout -- <file>
+        当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步
+
+        git reset HEAD <file>
+        git checkout -- <file>
+
+
+        已经提交了不合适的修改到版本库时，想要撤销本次提交，使用版本回退：git reset ...
+        删除一个文件：git rm <file>>>>(提交删除)git commit -m 'remove file'/(恢复)git checkout -- <file>
+        关联一个远程库：git remote add origin git@server-name:path/repo-name.git
+        关联远程仓库后第一次推送master分支所有内容：git push -u origin master
+        每次本地提交后，使用该命令推送最新修改：git push origin master
+        使用远程库克隆一个本地库：git clone git@server-name:path/repo-name.git
+        查看分支：git branch
+        创建分支：git branch <name>
+        切换分支：git checkout <name>
+        创建+切换分支：git checkout -b <name>
+        合并某分支到当前分支：git merge <name>
+        删除分支：git branch -d <name>
+        查看分支合并图：git log --graph
+        普通模式合并分支,合并后的历史有分支，能看出来曾经做过合并git merge --no-ff -m 'merge message' <name>
+        默认合并模式是fast forward删除分支后，会丢掉分支信息
+        存储当前工作现场：git stash
+        恢复存储的工作现场(stash内容删除)：git stash pop
+        查看存储的工作现场：git stash list
+        多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stashgit stash apply stash@{0}(apply指令的stash内容不删除)
+        丢弃一个没有被合并过的分支：git branch -D <name>
+        查看远程库信息：git remote -v
+        本地推送分支：git push origin branch-name
+        抓取远程的新提交：git pull
+        在本地创建和远程分支对应的分支：git checkout -b <branch-name> origin/<branch-name>
+        建立本地分支和远程分支的关联：git branch --set-upstream <branch-name> origin/<branch-name>
+        在当前commit(HEAD)新建一个标签：git tag <name>
+        指定一个commitId新建一个标签：git tag v0.9 6224937
+        指定标签信息：git tag -a <tagname> -m 'tagmessage'
+        使用pgp签名标签：git tag -s <tagname> -m 'tagmessage'
+        查看所有标签：git tag
+        推送一个本地标签：git push origin <tagname>
+        推送全部为推送的本地标签：git push origin --tags
+        删除一个本地标签：git tag -d <tagname>
+        删除一个远程标签：git push origin :refs/tags/<tagname>
+        忽略某些文件，需要编写.gitignore
+
+        //我的项目中.gitignore文件中
+        .DS_Store
+        node_modules/
+        dist/
+        npm-debug.log*
+        yarn-debug.log*
+        yarn-error.log*
+
+
+        配置git命令别名
+
+        git config --global alias.co checkout
+        git config --global alias.ci commit
+        git config --global alias.br branch
