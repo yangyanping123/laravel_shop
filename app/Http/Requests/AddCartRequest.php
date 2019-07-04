@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Models\ProductSku;
 class AddCartRequest extends FormRequest

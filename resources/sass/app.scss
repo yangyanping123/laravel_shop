@@ -55,7 +55,10 @@ body {
     }
   }
 }
-.products-index-page  .products-favorites-page {
+.products-index-page,  .products-favorites-page  {
+  .pagination {
+    margin-right: 5px;
+  }
   .products-list {
     padding: 0 15px;
     .product-item {
@@ -114,11 +117,6 @@ body {
     }
   }
 
-}
-.products-index-page {
-  .pagination {
-    margin-right: 5px;
-  }
 }
 
 .products-show-page {
