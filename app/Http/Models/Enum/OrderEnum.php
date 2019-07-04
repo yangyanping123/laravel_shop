@@ -29,7 +29,7 @@ class OrderEnum{
         }
     }
 
-    public static function  getShipStatusNane ($status)
+    public static function  getShipStatusName ($status)
     {
         switch ($status){
             case self::SHIP_STATUS_PENDING:
