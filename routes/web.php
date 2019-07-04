@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PagesController@root')->name('root');
-Route::get('products', 'ProductsController@index')->name('products.index');
+Route::get('/', 'ProductsController@index')->name('products.index');
 
 
 Route::any('/wechat', 'Wechat\IndexController@index');
@@ -37,5 +37,6 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
     Route::post('orders', 'OrdersController@store')->name('orders.store');
     Route::get('orders', 'OrdersController@index')->name('orders.index');
+    Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
 });
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
