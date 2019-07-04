@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Http\Models\Order;
 use App\Http\Models\Enum\OrderEnum;
 class CreateOrdersTable extends Migration
 {
@@ -25,13 +24,11 @@ class CreateOrdersTable extends Migration
             $table->dateTime('paid_at')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('payment_no')->nullable();
-           // $table->string('refund_status');
+            $table->string('refund_status')->default(OrderEnum::REFUND_STATUS_PENDING);
             $table->string('refund_no')->unique()->nullable();
             $table->boolean('closed')->default(false);
             $table->boolean('reviewed')->default(false);
-            $table->string('refund_status')->default(OrderEnum::REFUND_STATUS_PENDING);
             $table->string('ship_status')->default(OrderEnum::SHIP_STATUS_PENDING);
-            //$table->string('ship_status');
             $table->text('ship_data')->nullable();
             $table->text('extra')->nullable();
             $table->timestamps();
