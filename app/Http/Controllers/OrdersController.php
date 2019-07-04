@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use App\Http\Models\UserAddress;
 use App\Http\Models\Order;
 use App\Http\Models\ProductSku;
 use Carbon\Carbon;
+use App\Jobs\CloseOrder;
 class OrdersController extends Controller
 {
     public function store(OrderRequest $request)
@@ -63,7 +62,7 @@ class OrdersController extends Controller
 
             return $order;
         });
-
+        dispatch(new CloseOrder($order, config('app.order_ttl')));
         return $order;
     }
 }
