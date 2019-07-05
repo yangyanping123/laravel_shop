@@ -13,6 +13,11 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->get('users', 'UsersController@index');
     $router->resource('products', ProductsController::class);
+
+
     $router->get('orders/{order}', 'OrdersController@showdata')->name('admin.orders.show');
     $router->get('orders', 'OrdersController@index')->name('admin.orders.index');
+    $router->post('orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship');
+
+
 });
