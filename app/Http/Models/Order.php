@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    /*
     const REFUND_STATUS_PENDING = 'pending';
     const REFUND_STATUS_APPLIED = 'applied';
     const REFUND_STATUS_PROCESSING = 'processing';
@@ -29,7 +30,7 @@ class Order extends Model
         self::SHIP_STATUS_DELIVERED => '已发货',
         self::SHIP_STATUS_RECEIVED  => '已收货',
     ];
-
+  */
     protected $fillable = [
         'no',
         'address',

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Monolog\Logger;
 use Yansongda\Pay\Pay;
+use Illuminate\Support\Str;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -54,6 +55,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 只在本地开发环境启用 SQL 日志
+        if (app()->environment('local')) {
+            \DB::listen(function ($query) {
+                \Log::info(Str::replaceArray('?', $query->bindings, $query->sql));
+            });
+        }
     }
 }
