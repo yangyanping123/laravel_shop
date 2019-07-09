@@ -180,6 +180,7 @@ return [
        // Yajra\Oci8\Oci8ServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         //VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -234,6 +235,7 @@ return [
         'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
         'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
+        'Image' => Intervention\Image\Facades\Image::class
         ],
     'order_ttl' => 1800, //30分钟
 ];
