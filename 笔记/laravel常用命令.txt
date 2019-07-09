@@ -1,149 +1,149 @@
 
-1. Èı¸öÉú³Éurlº¯ÊıµÄÊ¹ÓÃÇø±ğurl() ¡¢action()¡¢route() 
+1. ä¸‰ä¸ªç”Ÿæˆurlå‡½æ•°çš„ä½¿ç”¨åŒºåˆ«url() ã€action()ã€route()
 
 url() {{url('site/create')}}
-action() {{action('siteController@create')}} ¿ØÖÆÆ÷@·½·¨
-route() {{route('Â·ÓÉµÄ±ğÃû')}} ¸ü¼ÓÁé»î Èç¹ûÃû×Ö¸ÄÁË Ò³Ãæ±¨´í
+action() {{action('siteController@create')}} æ§åˆ¶å™¨@æ–¹æ³•
+route() {{route('è·¯ç”±çš„åˆ«å')}} æ›´åŠ çµæ´» å¦‚æœåå­—æ”¹äº† é¡µé¢æŠ¥é”™
 
-2. redirect() Ïà¹ØÌø×ªº¯ÊıµÄÓÃ·¨ÓëÇø±ğ
-     redirect('/save') 
-	 redirect()->to('/save') ÖØ¶¨Ïòµ½ÄÄÀïÈ¥ ºÍµÚÒ»ÖÖ·½·¨ÊÇÒ»ÑùµÄ
-	 redirect()->action('¿ØÖÆÆ÷@·½·¨Ãû')
-	 redirect()->route('Â·ÓÉµÄÃû×Ö') //µ½Ä³Ò»¸öÂ·ÓÉ
-	 redirect()->back()ÄÇÀïÀ´»ØÄÇÀïÈ¥
-	 back() ÄÇÀïÀ´»ØÄÇÀïÈ¥ ¼òµ¥Ğ´·¨
-3.»ñÈ¡Â·¾¶Ïà¹Øº¯Êı
-     public_path()µ½publicÄ¿Â¼  
-	  µÚÒ»ÖÖĞ´·¨public_path().'/Uploads/'
-	   µÚ¶şÖÖĞ´·¨public_path('Uploads')
-	 base_path()ÏîÄ¿¸úÄ¿Â¼
-	 app_path() 
+2. redirect() ç›¸å…³è·³è½¬å‡½æ•°çš„ç”¨æ³•ä¸åŒºåˆ«
+     redirect('/save')
+	 redirect()->to('/save') é‡å®šå‘åˆ°å“ªé‡Œå» å’Œç¬¬ä¸€ç§æ–¹æ³•æ˜¯ä¸€æ ·çš„
+	 redirect()->action('æ§åˆ¶å™¨@æ–¹æ³•å')
+	 redirect()->route('è·¯ç”±çš„åå­—') //åˆ°æŸä¸€ä¸ªè·¯ç”±
+	 redirect()->back()é‚£é‡Œæ¥å›é‚£é‡Œå»
+	 back() é‚£é‡Œæ¥å›é‚£é‡Œå» ç®€å•å†™æ³•
+3.è·å–è·¯å¾„ç›¸å…³å‡½æ•°
+     public_path()åˆ°publicç›®å½•
+	  ç¬¬ä¸€ç§å†™æ³•public_path().'/Uploads/'
+	   ç¬¬äºŒç§å†™æ³•public_path('Uploads')
+	 base_path()é¡¹ç›®è·Ÿç›®å½•
+	 app_path()
 	 resource_path()
-	 ¡£¡£¡£¡£
- 
- 
+	 ã€‚ã€‚ã€‚ã€‚
 
-½¨Á¢Êı¾İ±í
+
+
+å»ºç«‹æ•°æ®è¡¨
 
 	php artisan make:migration create_tasks_table --create=tasks
 
-°Ñ±íĞ´ÈëÊı¾İ¿â
+æŠŠè¡¨å†™å…¥æ•°æ®åº“
 
 	php artisan migrate
 
-ÔÚÉú²ú»·¾³ÖĞÇ¿ÖÆÔËĞĞÇ¨ÒÆ,Ã»ÓĞÌáÊ¾
+åœ¨ç”Ÿäº§ç¯å¢ƒä¸­å¼ºåˆ¶è¿è¡Œè¿ç§»,æ²¡æœ‰æç¤º
 
 	php artisan migrate --force
 
-»Ø¹öÇ¨ÒÆ
+å›æ»šè¿ç§»
 
 	php artisan migrate:rollback
 
-»Ø¹öËùÓĞµÄÓ¦ÓÃÇ¨ÒÆ
+å›æ»šæ‰€æœ‰çš„åº”ç”¨è¿ç§»
 
 	php artisan migrate:reset
 
-¸ü¸Ä±íÖ®ºó£¬¸üĞÂÊı¾İ¿â,Êı¾İ»á±»Ë¢Ã»
+æ›´æ”¹è¡¨ä¹‹åï¼Œæ›´æ–°æ•°æ®åº“,æ•°æ®ä¼šè¢«åˆ·æ²¡
 
 	php artisan migrate:refresh
 
-½¨Á¢modelÄ£ĞÍ
+å»ºç«‹modelæ¨¡å‹
 
 	php artisan make:model Task
 
-½¨Á¢modelÄ£ĞÍÍ¬Ê±Éú³ÉÊı¾İ±í
+å»ºç«‹modelæ¨¡å‹åŒæ—¶ç”Ÿæˆæ•°æ®è¡¨
 
 	php artisan make:model Student --migration
-	
-Éú³ÉÈÏÖ¤ËùĞèÒªµÄÂ·ÓÉ£¬ÊÓÍ¼£¬HomeController
-	
+
+ç”Ÿæˆè®¤è¯æ‰€éœ€è¦çš„è·¯ç”±ï¼Œè§†å›¾ï¼ŒHomeController
+
 	php artisan make:auth
 
-Éú³ÉÈÏÖ¤ËùĞèÒªµÄÊÓÍ¼
-	
+ç”Ÿæˆè®¤è¯æ‰€éœ€è¦çš„è§†å›¾
+
 	php artisan make:auth --views
 
-Éú³É¿ØÖÆÆ÷
-	
+ç”Ÿæˆæ§åˆ¶å™¨
+
 	php artisan make:controller HomeController
 
-Ã¿¸ö²ßÂÔ¶¼¶ÔÓ¦Ò»¸öÄ£ĞÍ£¬Éú³É²ßÂÔ
-	
+æ¯ä¸ªç­–ç•¥éƒ½å¯¹åº”ä¸€ä¸ªæ¨¡å‹ï¼Œç”Ÿæˆç­–ç•¥
+
 	php artisan make:policy TaskPolicy
 
-½¨Á¢ÖĞ¼ä¼ş
-	
+å»ºç«‹ä¸­é—´ä»¶
+
 	php artisan make:middleware AgeMiddleware
 
-Éú³É¿ØÖÆÆ÷´ø·½·¨
-	
+ç”Ÿæˆæ§åˆ¶å™¨å¸¦æ–¹æ³•
+
 	php artisan make:controller PhotoController --resource
 
-Éú³ÉÂ·ÓÉ»º´æ£¬Ìá¸ßĞ§ÂÊ
-	
+ç”Ÿæˆè·¯ç”±ç¼“å­˜ï¼Œæé«˜æ•ˆç‡
+
 	php artisan route:cache
 
-Çå³ıÂ·ÓÉ»º´æ
-	
+æ¸…é™¤è·¯ç”±ç¼“å­˜
+
 	php artisan route:clear
 
-Çå³ıÄ£°å»º´æ
-	
+æ¸…é™¤æ¨¡æ¿ç¼“å­˜
+
 	php artisan view:clear
 
-Éú³ÉÒ»¸öĞÂµÄÌá¹©Õß
-	
+ç”Ÿæˆä¸€ä¸ªæ–°çš„æä¾›è€…
+
 	php artisan make:provider RiakServiceProvider
 
-Éú³ÉĞÂµÄAPP_KEY
-	
+ç”Ÿæˆæ–°çš„APP_KEY
+
 	php artisan key:generate
 
-Ä³¸öÃüÁîµÄ°ïÖú
-	
+æŸä¸ªå‘½ä»¤çš„å¸®åŠ©
+
 	php artisan help migrate
 
-×Ô¶¨ÒåÃüÁî
-	
+è‡ªå®šä¹‰å‘½ä»¤
+
 	php artisan make:console SendEmails --command=emails:send
 
-Éú³ÉÊÂ¼ş/¼àÌıÆ÷Àà
-	
+ç”Ÿæˆäº‹ä»¶/ç›‘å¬å™¨ç±»
+
 	php artisan event:generate
 
-µ¥¶À½¨Á¢Ò»¸öevent
-	
+å•ç‹¬å»ºç«‹ä¸€ä¸ªevent
+
 	php artisan make:event ActionDone
 
-½¨Á¢Event Listeners
-	
+å»ºç«‹Event Listeners
+
 	php artisan make:listener ThingToDoAfterEventWasFired --event="ActionDone"
 
-Éú³ÉÊı¾İ¿â¶ÓÁĞ±í
-	
+ç”Ÿæˆæ•°æ®åº“é˜Ÿåˆ—è¡¨
+
 	php artisan queue:table
 
-Éú³Éjob class
-	
+ç”Ÿæˆjob class
+
 	php artisan make:job SendReminderEmail
 
-Éú³ÉµÄÌî³äÆ÷£¬È»ºó×Ô¼ºĞ´ÊµÑéÊı¾İĞ´ÈëÊı¾İ¿âµÄ
-	
+ç”Ÿæˆçš„å¡«å……å™¨ï¼Œç„¶åè‡ªå·±å†™å®éªŒæ•°æ®å†™å…¥æ•°æ®åº“çš„
+
 	php artisan make:seeder UserTableSeeder
 
-°ÑDatabaseSeederµÄÊı¾İĞ´ÈëÊı¾İ¿â
-	
+æŠŠDatabaseSeederçš„æ•°æ®å†™å…¥æ•°æ®åº“
+
 	php artisan db:seed
 
-°ÑUserTableSeederµÄÊı¾İĞ´ÈëÊı¾İ¿â
-	
+æŠŠUserTableSeederçš„æ•°æ®å†™å…¥æ•°æ®åº“
+
 	php artisan db:seed --class=UserTableSeeder
 
-ÖØĞÂ½¨Á¢ÔÚ°Ñ°ÑDatabaseSeederµÄÊı¾İĞ´ÈëÊı¾İ¿â
+é‡æ–°å»ºç«‹åœ¨æŠŠæŠŠDatabaseSeederçš„æ•°æ®å†™å…¥æ•°æ®åº“
 
 	php artisan migrate:refresh --seed
-	
-Éú³ÉÂ·ÓÉÁĞ±í
+
+ç”Ÿæˆè·¯ç”±åˆ—è¡¨
 
 	php artisan route:list
 
