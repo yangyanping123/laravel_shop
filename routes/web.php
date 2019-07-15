@@ -39,6 +39,10 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('orders', 'OrdersController@store')->name('orders.store');
     Route::get('orders', 'OrdersController@index')->name('orders.index');
     Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+    Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+    Route::get('orders/{order}/review', 'OrdersController@review')->name('orders.review.show');
+    Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store');
+    Route::post('orders/{order}/apply_refund', 'OrdersController@applyRefund')->name('orders.apply_refund');
 
     //支付宝
     Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
