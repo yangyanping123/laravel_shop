@@ -237,5 +237,5 @@ return [
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
         'Image' => Intervention\Image\Facades\Image::class
         ],
-    'order_ttl' => 1800, //30分钟
+    'order_ttl' => 10, //30分钟
 ];

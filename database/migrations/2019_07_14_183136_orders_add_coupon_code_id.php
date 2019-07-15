@@ -27,7 +27,8 @@ class OrdersAddCouponCodeId extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            //
+            $table->dropForeign(['coupon_code_id']);
+            $table->dropColumn('coupon_code_id');
         });
     }
 }
