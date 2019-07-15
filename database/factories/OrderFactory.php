@@ -10,10 +10,14 @@ $factory->define(Order::class, function (Faker $faker) {
     // 随机取一个该用户的地址
     $address = $user->addresses()->inRandomOrder()->first();
     // 10% 的概率把订单标记为退款
-    $refund = random_int(0, 10) < 1;
+    $refund = rand(0, 10) < 1;
     // 随机生成发货状态
-    $ship = $faker->randomElement(array_keys(OrderEnum::$shipStatusMap));
-    // 优惠券
+    $shipstatus=[
+      'pending',
+      'delivered',
+      'received'
+    ];
+    $ship = $faker->randomElement($shipstatus);
     $coupon = null;
     // 30% 概率该订单使用了优惠券
     if (random_int(0, 10) < 3) {
@@ -22,9 +26,8 @@ $factory->define(Order::class, function (Faker $faker) {
         // 增加优惠券的使用量
         $coupon->changeUsed();
     }
-
     return [
-        'address'        => [
+       'address'        => [
             'address'       => $address->full_address,
             'zip'           => $address->zip,
             'contact_name'  => $address->contact_name,
@@ -36,10 +39,10 @@ $factory->define(Order::class, function (Faker $faker) {
         'payment_method' => $faker->randomElement(['wechat', 'alipay']),
         'payment_no'     => $faker->uuid,
         'refund_status'  => $refund ? OrderEnum::REFUND_STATUS_SUCCESS : OrderEnum::REFUND_STATUS_PENDING,
-        'refund_no'      => $refund ? OrderEnum::getAvailableRefundNo() : null,
+        'refund_no'      => $refund ? Order::getAvailableRefundNo() : null,
         'closed'         => false,
         'reviewed'       => random_int(0, 10) > 2,
-        'ship_status'    => $ship,
+       'ship_status'    => $ship,
         'ship_data'      => $ship === OrderEnum::SHIP_STATUS_PENDING ? null : [
             'express_company' => $faker->company,
             'express_no'      => $faker->uuid,

@@ -3,6 +3,7 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Http\Models\Product;
+use App\Http\Models\Category;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
@@ -19,6 +20,7 @@ $factory->define(Product::class, function (Faker $faker) {
         "https://cdn.learnku.com/uploads/images/201806/01/5320/pa7DrV43Mw.jpg",
     ]);
 
+    $category = Category::query()->where('is_directory', false)->inRandomOrder()->first();
 
     return [
         'title'        => $faker->word,
@@ -29,5 +31,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'sold_count'   => 0,
         'review_count' => 0,
         'price'        => 0,
+        'category_id'  => $category ? $category->id : null,
     ];
 });
