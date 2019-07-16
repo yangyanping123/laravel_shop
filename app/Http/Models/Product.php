@@ -32,4 +32,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function crowdfunding()
+    {
+        return $this->hasOne(CrowdfundingProduct::class);
+    }
+
+    public function properties()
+    {
+        return $this->hasMany(ProductProperty::class);
+    }
 }
