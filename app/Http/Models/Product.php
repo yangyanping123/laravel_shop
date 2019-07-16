@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $fillable = [
         'title', 'description', 'image', 'on_sale',
-        'rating', 'sold_count', 'review_count', 'price'
+        'rating', 'sold_count', 'review_count', 'price','type'
     ];
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
@@ -33,6 +33,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    //与众筹表关联
     public function crowdfunding()
     {
         return $this->hasOne(CrowdfundingProduct::class);
