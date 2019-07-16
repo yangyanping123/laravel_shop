@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Http\Models\Enum\CrowdfundingProductEnum;
 use App\Http\Models\Enum\ProductEnum;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -40,7 +41,7 @@ class CrowdfundingProductsController extends CommonProductsController
         $grid->column('crowdfunding.end_at', '结束时间');
         $grid->column('crowdfunding.total_amount', '目前金额');
         $grid->column('crowdfunding.status', ' 状态')->display(function ($value) {
-            return CrowdfundingProduct::$statusMap[$value];
+            return CrowdfundingProductEnum::$statusMap[$value];
         });
     }
 

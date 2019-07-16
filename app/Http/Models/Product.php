@@ -39,8 +39,11 @@ class Product extends Model
         return $this->hasOne(CrowdfundingProduct::class);
     }
 
+    //与商品属性管理
     public function properties()
     {
         return $this->hasMany(ProductProperty::class);
     }
+
+
 }
