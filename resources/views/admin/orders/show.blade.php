@@ -53,6 +53,10 @@
             <!-- 订单发货开始 -->
             <!-- 如果订单未发货，展示发货表单 -->
             @if($order->ship_status === \App\Http\Models\Enum\OrderEnum::SHIP_STATUS_PENDING)
+                <!--只有众筹状态是『已成功』的众筹订单才可以发货S。-->
+                @if($order->refund_status !== \App\Http\Models\Enum\OrderEnum::REFUND_STATUS_SUCCESS &&
+           ($order->type !== \App\Http\Models\Enum\OrderEnum::TYPE_CROWDFUNDING ||
+             $order->items[0]->product->crowdfunding->status === \App\Http\Models\Enum\CrowdfundingProductEnum::STATUS_SUCCESS))
                 <tr>
                     <td colspan="4">
                         <form action="{{ route('admin.orders.ship', [$order->id]) }}" method="post" class="form-inline">
@@ -80,6 +84,8 @@
                         </form>
                     </td>
                 </tr>
+                @endif
+                <!--只有众筹状态是『已成功』的众筹订单才可以发货E。-->
             @else
                 <!-- 否则展示物流公司和物流单号 -->
                 <tr>

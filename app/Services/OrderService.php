@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Http\Models\Enum\OrderEnum;
 use App\Http\Models\User;
 use App\Http\Models\UserAddress;
 use App\Http\Models\Order;
@@ -32,6 +33,7 @@ class OrderService{
                     'contact_name'  => $address->contact_name,
                     'contact_phone' => $address->contact_phone,
                 ],
+                'type'         => OrderEnum::TYPE_NORMAL,
                 'remark'       => $remark,
                 'total_amount' => 0,
             ]);
@@ -101,8 +103,10 @@ class OrderService{
                     'contact_name'  => $address->contact_name,
                     'contact_phone' => $address->contact_phone,
                 ],
+                'type'         => OrderEnum::TYPE_CROWDFUNDING,
                 'remark'       => '',
                 'total_amount' => $sku->price * $amount,
+
             ]);
             // 订单关联到当前用户
             $order->user()->associate($user);

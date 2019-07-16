@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Http\Models\Enum\CrowdfundingProductEnum;
 use App\Http\Models\Enum\OrderEnum;
 use App\Http\Models\Order;
 use App\Http\Requests\OrderDelivateRequest;
@@ -77,6 +78,11 @@ class OrdersController extends AdminController
         // 判断当前订单发货状态是否为未发货
         if ($order->ship_status !== OrderEnum::SHIP_STATUS_PENDING) {
             throw new InvalidRequestException('该订单已发货');
+        }
+        //只有众筹状态是『已成功』的众筹订单才可以发货
+        if ($order->type === OrderEnum::TYPE_CROWDFUNDING &&
+            $order->items[0]->product->crowdfunding->status !== CrowdfundingProductEnum::STATUS_SUCCESS) {
+            throw new InvalidRequestException('众筹订单只能在众筹成功之后发货');
         }
         // 将订单发货状态改为已发货，并存入物流信息
         $order->update([
