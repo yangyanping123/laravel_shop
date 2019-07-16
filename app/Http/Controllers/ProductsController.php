@@ -67,6 +67,7 @@ class ProductsController extends Controller
 
                 ],
                 'category' => $category ?? null,
+               // 'categoryTree' => $categoryService->getCategoryTree(),
             ]);
     }
 
