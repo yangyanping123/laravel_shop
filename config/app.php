@@ -238,4 +238,5 @@ return [
         'Image' => Intervention\Image\Facades\Image::class
         ],
     'order_ttl' => 10, //30分钟
+    'ngrok_url' => env('NGROK_URL'),
 ];

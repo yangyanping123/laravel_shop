@@ -30,3 +30,4 @@ function ngrok_url($routeName, $parameters = [])
 
     return route($routeName, $parameters);
 }
+

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Monolog\Logger;
 use Yansongda\Pay\Pay;
 use Illuminate\Support\Str;
+//use \Barryvdh\LaravelIdeHelper;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,14 +16,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->environment() !== 'production') {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-        }
+      //  if ($this->app->environment() !== 'production') {
+          //  $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+       // }
 
         // 往服务容器中注入一个名为 alipay 的单例对象
         $this->app->singleton('alipay', function () {
             $config               = config('pay.alipay');
-            $config['notify_url'] = "http://requestbin.fullcontact.com/123k03i1";
+            $config['notify_url'] = ngrok_url('payment.alipay.notify');
             $config['return_url'] = route('payment.alipay.return');
             // 判断当前项目运行环境是否为线上环境
             if (app()->environment() !== 'production') {
@@ -37,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('wechat_pay', function () {
             $config = config('pay.wechat');
-            $config['notify_url'] = 'http://requestbin.fullcontact.com/[替换成你自己的url]';
+            $config['notify_url'] = ngrok_url('payment.alipay.notify');
             if (app()->environment() !== 'production') {
                 $config['log']['level'] = Logger::DEBUG;
             } else {

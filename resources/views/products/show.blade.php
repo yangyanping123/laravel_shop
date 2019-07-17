@@ -233,6 +233,11 @@
                 }
                 // 把用户的收货地址以 JSON 的形式放入页面，赋值给 addresses 变量
                 var addresses = {!! json_encode(Auth::check() ? Auth::user()->addresses : []) !!};
+               if(addresses.length==0){
+                   swal('请先完善收货地址');
+                       location.href = '/user_addresses/create';
+
+               }
                 // 使用 jQuery 动态创建一个表单
                 var $form = $('<form></form>');
                 // 表单中添加一个收货地址的下拉框
@@ -281,14 +286,7 @@
                         }, function (error) {
                             // 输入参数校验失败，展示失败原因
                             if (error.response.status === 422) {
-                                var html = '<div>';
-                                _.each(error.response.data.errors, function (errors) {
-                                    _.each(errors, function (error) {
-                                        html += error+'<br>';
-                                    })
-                                });
-                                html += '</div>';
-                                swal({content: $(html)[0], icon: 'error'})
+                                swal(error.response.data.message, '', 'error');
                             } else if (error.response.status === 403) {
                                 swal(error.response.data.msg, '', 'error');
                             } else {

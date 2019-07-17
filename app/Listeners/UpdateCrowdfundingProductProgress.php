@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\OrderPaid;
 use App\Http\Models\Enum\OrderEnum;
+use App\Http\Models\Order;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Models\Order;
 use App\Exceptions\InvalidRequestException;
 use Carbon\Carbon;
-use Endroid\QrCode\QrCode;
+//use Endroid\QrCode\QrCode;
 use App\Events\OrderPaid;
 class PaymentController extends Controller
 {
@@ -28,6 +28,7 @@ class PaymentController extends Controller
     }
 
 
+    //前端页面回调
     public function alipayReturn()
     {
         // 校验提交的参数是否合法
@@ -46,8 +47,8 @@ class PaymentController extends Controller
     public function alipayNotify()
     {
         //测试
-      //  $data = app('alipay')->verify();
-        //\Log::debug('Alipay notify', $data->all());
+       $data = app('alipay')->verify();
+        \Log::debug('Alipay notify', $data->all());
         // 校验输入参数
         $data  = app('alipay')->verify();
         // 如果订单状态不是成功或者结束，则不走后续的逻辑
@@ -90,10 +91,10 @@ class PaymentController extends Controller
             'body'         => '支付 Laravel Shop 的订单：'.$order->no,
         ]);
         // 把要转换的字符串作为 QrCode 的构造函数参数
-        $qrCode = new QrCode($wechatOrder->code_url);
+       // $qrCode = new QrCode($wechatOrder->code_url);
 
         // 将生成的二维码图片数据以字符串形式输出，并带上相应的响应类型
-        return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
+      //  return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
 
     public function wechatNotify()
