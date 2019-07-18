@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Http\Models\Enum\InstallmentItemEnum;
 
 class CreateInstallmentItemsTable extends Migration
 {
@@ -25,7 +26,7 @@ class CreateInstallmentItemsTable extends Migration
             $table->dateTime('paid_at')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('payment_no')->nullable();
-            $table->string('refund_status');
+            $table->string('refund_status')->default(InstallmentItemEnum::REFUND_STATUS_PENDING);
             $table->timestamps();
         });
     }

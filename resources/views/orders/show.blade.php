@@ -45,11 +45,14 @@
                             <div class="line"><div class="line-label">收货地址：</div><div class="line-value">{{ join(' ', $order->address) }}</div></div>
                             <div class="line"><div class="line-label">订单备注：</div><div class="line-value">{{ $order->remark ?: '-' }}</div></div>
                             <div class="line"><div class="line-label">订单编号：</div><div class="line-value">{{ $order->no }}</div></div>
-                            <!-- 输出物流状态 -->
-                            <div class="line">
-                                <div class="line-label">物流状态：</div>
-                                <div class="line-value">{{ \App\Http\Models\Enum\OrderEnum::getShipStatusName($order->ship_status) }}</div>
-                            </div>
+
+                            @if($order->pait_at)
+                                <!-- 输出物流状态 -->
+                                    <div class="line">
+                                        <div class="line-label">物流状态：</div>
+                                        <div class="line-value">{{ \App\Http\Models\Enum\OrderEnum::getShipStatusName($order->ship_status) }}</div>
+                                    </div>
+                            @endif
                             <!-- 如果有物流信息则展示 -->
                             @if($order->ship_data)
                                 <div class="line">
@@ -110,6 +113,12 @@
                                 <div class="payment-buttons">
                                     <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">支付宝支付</a>
                                     <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
+                                    <!-- 分期支付按钮开始 -->
+                                    <!-- 仅当订单总金额大等于分期最低金额时才展示分期按钮 -->
+                                    @if ($order->total_amount >= config('app.min_installment_amount'))
+                                        <button class="btn btn-sm btn-danger" id='btn-installment'>分期付款</button>
+                                    @endif
+                                <!-- 分期支付按钮结束 -->
 
                                 </div>
                             @endif
@@ -138,6 +147,46 @@
         </div>
     </div>
     </div>
+
+    <!-- 分期弹框开始 -->
+    <div class="modal fade" id="installment-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">选择分期期数</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead>
+                        <tr>
+                            <th class="text-center">期数</th>
+                            <th class="text-center">费率</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach(config('app.installment_fee_rate') as $count => $rate)
+                            <tr>
+                                <td>{{ $count }}期</td>
+                                <td>{{ $rate }}%</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary btn-select-installment" data-count="{{ $count }}">选择</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 分期弹框结束 -->
 @endsection
 @section('scriptsAfterJs')
     <script>
@@ -199,6 +248,30 @@
                                 location.reload();
                             });
                         });
+                });
+            });
+
+            // 分期付款按钮点击事件
+            $('#btn-installment').click(function () {
+                // 展示分期弹框
+                $('#installment-modal').modal();
+            });
+
+            // 选择分期期数按钮点击事件
+            $('.btn-select-installment').click(function () {
+                // 调用创建分期付款接口
+                axios.post('{{ route('payment.installment', ['order' => $order->id]) }}', { count: $(this).data('count') })
+                    .then(function (response) {
+                        console.log(response);
+                    /*  if(response.code==401){
+                          swal('退款理由不可空', '', 'error');
+                          return;
+                      }else{
+
+                      }*/
+                        // todo 跳转到分期付款页面
+                    },function(error){
+                        swal('参数错误', '', 'error');
                 });
             });
         });
