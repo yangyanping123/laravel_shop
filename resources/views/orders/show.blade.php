@@ -262,17 +262,11 @@
                 // 调用创建分期付款接口
                 axios.post('{{ route('payment.installment', ['order' => $order->id]) }}', { count: $(this).data('count') })
                     .then(function (response) {
-                        console.log(response);
-                    /*  if(response.code==401){
-                          swal('退款理由不可空', '', 'error');
-                          return;
-                      }else{
-
-                      }*/
-                        // todo 跳转到分期付款页面
-                    },function(error){
+                        location.href = '/installments/' + response.data.id;
+                    },function (error) {
                         swal('参数错误', '', 'error');
-                });
+                    })
+           
             });
         });
     </script>

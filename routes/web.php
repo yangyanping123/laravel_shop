@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
     //分期付款列表
     Route::get('installments', 'InstallmentsController@index')->name('installments.index');
+    Route::get('installments/{installment}', 'InstallmentsController@show')->name('installments.show');
 
 });
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
